@@ -21,11 +21,11 @@
     background-color: #007bff;
   }
   .blog-card {
-    background-color: #d0e0f2; 
+    background-color: #eef1f2; 
     transition: background-color 0.3s; 
   }
   
   .blog-card:hover {
-    background-color: #accdec; 
+    background-color: #e4eff8; 
   }
   

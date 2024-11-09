@@ -1,0 +1,19 @@
+
+.card {
+    transition: transform 0.2s; 
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .btn-success {
+    background-color: #28a745;
+    color: white;
+  }
+  

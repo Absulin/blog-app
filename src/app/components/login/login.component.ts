@@ -35,28 +35,28 @@ export class LoginComponent {
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
   }
-
   onSubmit() {
     const user = {
-      email: this.email.value,
-      password: this.password.value
+        email: this.email.value,
+        password: this.password.value
     };
 
     this.apiService.login(user).subscribe({
-      next: (result) => {
-        if (result['success']) {
-          this.authService.setLoggedIn(true);
-          this.authService.setUser(result['user_id'], result['user_name']);
-          this.router.navigate(['home']);
-        } else {
-          console.error(result.message);
-          alert(result.message); 
+        next: (result) => {
+            if (result['success']) {
+              localStorage.setItem('userId', result['user_id']);
+                this.authService.setLoggedIn(true);
+                this.authService.setUser(result['user_id'], result['user_name'], result['followed_ids']);
+                this.router.navigate(['home']);
+            } else {
+                console.error(result.message);
+                alert(result.message); 
+            }
+        },
+        error: (error) => {
+            console.error('Login failed:', error);
+            alert('Login failed: '); 
         }
-      },
-      error: (error) => {
-        console.error('Login failed:', error);
-        alert('Login failed: ' + JSON.stringify(error)); 
-      }
     });
-  }
+}
 }

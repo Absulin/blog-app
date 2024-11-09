@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-edit-post',
@@ -10,14 +11,14 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class EditPostComponent implements OnInit{
   posts: any[] = [];
-  
+  userId: string = '';
   postId: string = '';
   postData = {
     title: '',
     content: ''
   };
  
-  constructor(private apiservices: ApiService, private router: Router, private route: ActivatedRoute) {}
+  constructor(private apiservices: ApiService, private router: Router, private route: ActivatedRoute,private authservice:AuthService) {}
 
   ngOnInit(): void {
     this.postId = this.route.snapshot.paramMap.get('id')!;
@@ -72,5 +73,9 @@ export class EditPostComponent implements OnInit{
         }
       });
     }
+  }
+  logout() {
+    this.authservice.logout();
+    this.router.navigate(['/login']); 
   }
 }

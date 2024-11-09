@@ -8,8 +8,8 @@ border-radius: 5px;
 text-align: right;
 }
 .card {
-    max-width: 400px;
-    max-height:300px;
+    max-width: 500px;
+    max-height:400px;
     
     margin: auto; 
   }
@@ -22,3 +22,9 @@ text-align: right;
     transform: scale(1.02); 
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   }
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensure spacing is appropriate */
+  }
+  

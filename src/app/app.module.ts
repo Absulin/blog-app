@@ -11,6 +11,8 @@ import {HttpClientModule} from '@angular/common/http';
 import { AddBlogComponent } from './components/add-blog/add-blog.component';
 import { EditPostComponent } from './components/edit-post/edit-post.component';
 import { PostComponent } from './components/post/post.component';
+import { UserListComponent } from './components/user-list/user-list.component';
+import { TestComponent } from './components/test/test.component';
 
 
 
@@ -23,7 +25,9 @@ import { PostComponent } from './components/post/post.component';
     AboutComponent,
     AddBlogComponent,
     EditPostComponent,
-    PostComponent
+    PostComponent,
+    UserListComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,

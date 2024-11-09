@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
+import { AuthService } from 'src/app/services/auth.service';
+
 
 
 @Component({
@@ -11,8 +13,9 @@ import { ApiService } from 'src/app/services/api.service';
 export class AboutComponent implements OnInit{
 
   post: any; 
+  userId: string = '';
 
-  constructor(private route: ActivatedRoute, private apiService: ApiService) {
+  constructor(private route: ActivatedRoute, private apiService: ApiService,private authservice:AuthService,private router:Router) {
   }
 
   ngOnInit(): void {
@@ -35,5 +38,9 @@ export class AboutComponent implements OnInit{
         console.error('Error fetching post:', error);
       }
     });
+  }
+  logout() {
+    this.authservice.logout();
+    this.router.navigate(['/login']); 
   }
 }

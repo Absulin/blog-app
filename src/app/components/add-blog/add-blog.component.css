@@ -3,7 +3,7 @@
   }
   
   .form-control:focus {
-    border-color: #007bff; /* Focus color for the form control */
+    border-color: #e1e5e9; /* Focus color for the form control */
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Light blue glow effect */
   }
   

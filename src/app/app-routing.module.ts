@@ -8,6 +8,7 @@ import { AddBlogComponent } from './components/add-blog/add-blog.component';
 import { EditPostComponent } from './components/edit-post/edit-post.component';
 import { PostComponent } from './components/post/post.component';
 import { authGuard } from './guards/auth.guard';
+import { UserListComponent } from './components/user-list/user-list.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
     { path: "add-blog", component: AddBlogComponent,canActivate:[authGuard] },
     { path: "about/:id", component: AboutComponent },
     {path:"edit-post/:id",component:EditPostComponent,canActivate:[authGuard] },
-    {path:"post/:id",component:PostComponent,canActivate:[authGuard]}
+    {path:"post/:id",component:PostComponent,canActivate:[authGuard]},
+    {path:'user-list',component:UserListComponent,canActivate:[authGuard]}
 ];
 
 @NgModule({

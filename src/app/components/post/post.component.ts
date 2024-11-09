@@ -12,8 +12,8 @@ import { AuthService } from 'src/app/services/auth.service';
 export class PostComponent implements OnInit {
   blogs: any[] = [];  
   errorMessage: string = ''; 
-  
-  id: string = '';
+  userId: string = '';
+  postId: string = '';
   postData = {
     title: '',
     content: ''
@@ -47,18 +47,8 @@ export class PostComponent implements OnInit {
       }
     });
   }
-  deletePost(id:string): void {  
-    if (confirm('Are you sure you want to delete this post?')) {
-      this.apiService.deletePosts(id).subscribe({
-        next: () => {
-          alert('Post deleted successfully!');
-          this.router.navigate(['/home']);  
-        },
-        error: (error) => {
-          console.error('Error deleting post:', error);
-          alert('Error deleting post!');
-        }
-      });
-    }
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']); 
   }
 }

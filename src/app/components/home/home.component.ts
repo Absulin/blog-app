@@ -4,6 +4,13 @@ import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
 
+export interface Post {
+  id: number;
+  title: string;
+  content: string;
+  user_id: string;
+  file_path: string | null; 
+}
 
 @Component({
   selector: 'app-home',
@@ -11,18 +18,22 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  posts: any[] = [];
+  posts: Post[] = [];
   userId: string = '';
+  
 
   constructor(private apiservices: ApiService, private httpclient: HttpClient, private authServices: AuthService,private router:Router) {
     this.userId = this.authServices.getUserId(); 
+    // this.loadPosts();
+    
+  }
+
+  ngOnInit(): void {
     this.loadPosts();
   }
 
-  ngOnInit(): void {}
-
   loadPosts() {
-    this.apiservices.getPost().subscribe({
+    this.apiservices.getFollowedPosts(+this.userId).subscribe({
       next: (result) => {
         if (result.success) {
           this.posts = result.data;
@@ -36,9 +47,12 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  getUserPosts() {
-    return this.posts.filter(post => post.userId === this.userId);
-  }
+ 
+  getFullPath(filePath: string): string {
+    return `http://localhost/dbapp_api/uploads/${filePath}`;
+    
+
+}
 
   logout() {
     this.authServices.logout();
